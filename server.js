@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
 app.use(express.static('public'));
+let port = process.env.PORT || 8080;
 let server;
 
 function runServer() {
 
 return new Promise((resolve, reject) => {
-	server = app.listen(8080, () => {
-	        console.log(`Your app is listening on port 8080`);
+	server = app.listen(port, () => {
+	        console.log(`Your app is listening on port ${port}`);
 	        resolve();
 	      }) 
 			.on('error', err => {
