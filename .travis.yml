@@ -2,3 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: JNQoULglRIcAbeWBzaK5QhEBea5fc6p/DjH+SThW1zJNAcnbDmHe5pvGtJDlkmwzoDSd7rcjumz4vycbCcNTuT6ybF9uABcfVQFr/D+stbcE61xOD9wBhPpVNz6+IDrQCyJypVieJNjVF+iKjbXcpm+tNh0lqAciAXNBKrH1876YHuyVM7K/uj8GTRMsQ7HUYcZuijmwfbe0SJvZgPYBMHekUDz63OQanQ0jX12bTB/kC+orEY/2tqZY4QHF81EJ1bT/9mUt6KQAljdUL2K+5o7ERTLpjmOVWmSvZyiWqix94qmOM08rEIkHsG6YqwVUn3vN9lFyLMsS/k8XEMkjB5xjrTNG1FodLyPaTC/0HS3PPJgbHfFcc4HbLjyc6UTYuEZ50nUdlU6lHCA1OA8zdgIDRoR8+oXg9Aazacde8n6OIA/qOQ9I4oHE5GXGYAwPpcXQChrD5m2/uVD0SO0SZ9xtzgsXZYLd1v0PBWlkY9bQgeCTYE6dZie9PtqAyEblYCcfuIf4B9qkj56rbqWzxr9AngWYpvynJ4LZCmcc02PO0He6cNWKyojB9N7v1TTTSkRDE/vcaISUB2rcaElNfZhsMhbC9yeSXQ/uVoo0klM+lKJKb35b10opYZBUXEFqHwP3MgYfcr5gvMqqgn9UhT9JF3yTS/TjF4soGpzR9bA=
+  app: young-tundra-49854
+  on:
+    repo: Nylfmedli14/hypatia
