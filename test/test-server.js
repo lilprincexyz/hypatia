@@ -3,13 +3,14 @@ const chaiHttp = require('chai-http');
 
 const should = chai.should();
 const {closeServer, runServer, app} = require('../server');
+const {TEST_DATABASE_URL} = require('../config');
 
 chai.use(chaiHttp);
 
 describe('Hypatia API resource', function() {
 
   before(function() {
-    return runServer();
+    return runServer(TEST_DATABASE_URL);
   });
 
   after(function() {

@@ -21,7 +21,7 @@ app.use('/religion', religionRouter);
 
 let server;
 
-function runServer(port=PORT, databaseUrl=DATABASE_URL) {
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
 
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
@@ -62,4 +62,4 @@ if (require.main === module) {
   runServer().catch(err => console.error(err)); 
 }
 
-module.exports = {app, runServer, closeServer};
+module.exports = { app, runServer, closeServer};
