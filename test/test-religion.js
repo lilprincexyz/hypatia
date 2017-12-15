@@ -140,6 +140,11 @@ describe('Hypatia API resource', function() {
           res.should.be.json;
           res.body.should.be.a('object');
           res.body.name.should.equal(religion.name);
+          res.body.historicalRoots.should.equal(religion.historicalRoots);
+          res.body.basicBeliefs.should.equal(religion.basicBeliefs);
+          res.body.practices.should.equal(religion.practices);
+          res.body.organization.should.equal(religion.organization);
+          res.body.books.should.deep.equal(religion.books);
           //add all fields
         })
     });
