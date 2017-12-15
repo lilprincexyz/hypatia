@@ -122,6 +122,27 @@ describe('Hypatia API resource', function() {
           resReligion.books.should.deep.equal(religion.books);
         });
     });
+
+    it('should return religion by id', function() {
+      // Strategy: Get back all posts, and ensure they have expected keys
+      let religion
+
+      return Religion
+        .findOne()
+        .then(_religion => {
+          religion = _religion;
+
+          return chai.request(app)
+            .get(`/religion/${religion.id}`)
+        })
+        .then(res => {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.should.be.a('object');
+          res.body.name.should.equal(religion.name);
+          //add all fields
+        })
+    });
   });
 
   describe('POST endpoint', function() {
