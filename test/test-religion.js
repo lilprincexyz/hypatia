@@ -34,13 +34,13 @@ function tearDownDb() {
 // generate placeholder values for author, title, content
 // and then we insert that data into mongo
 function seedReligionData() {
-  console.info('seeding blog post data');
-  // this will return a promise
+  console.info('seeding religion data');
+  // this will return a promiseø
   return Religion.insertMany(mockReligions);
 }
 
 
-describe('Hypatia', function() {
+describe('Hypatia API resource', function() {
 
   before(function() {
     return runServer(TEST_DATABASE_URL);
@@ -67,27 +67,26 @@ describe('Hypatia', function() {
 
     it('should return all existing religions', function() {
       // strategy:
-      //    1. get back all posts returned by by GET request to `/posts`
+      //    1. get back all religions returned by GET request to `/religion`
       //    2. prove res has right status, data type
       //    3. prove the number of posts we got back is equal to number
       //       in db.
       let res;
       return chai.request(app)
-        .get('/religion/')
+        .get('/religion')
         .then(_res => {
           res = _res;
           res.should.have.status(200);
           // otherwise our db seeding didn't work
 
-          concole.log(JSON.stringify(res));
-          // res.body.should.have.length.of.at.least(1);
+          console.log(JSON.stringify(res));
+          res.body.should.be.a('array');  
 
           return Religion.count();
         })
         .then(count => {
           // the number of returned posts should be same
           // as number of posts in DB
-          res.body.should.have.length.of(count);
         });
     });
 
@@ -96,7 +95,7 @@ describe('Hypatia', function() {
 
       let resReligion;
       return chai.request(app)
-        .get('/')
+        .get('/religion')
         .then(function(res) {
 
           res.should.have.status(200);
@@ -104,9 +103,9 @@ describe('Hypatia', function() {
           res.body.should.be.a('array');
           res.body.should.have.length.of.at.least(1);
 
-          res.body.forEach(function(post) {
-            post.should.be.a('object');
-            post.should.include.keys('name', 'historicalRoots', 'basicBeliefs', 
+          res.body.forEach(function(religion) {
+            religion.should.be.a('object');
+            religion.should.include.keys('name', 'historicalRoots', 'basicBeliefs', 
               'practices', 'organization', 'books');
           });
           // just check one of the posts that its values match with those in db
@@ -114,13 +113,13 @@ describe('Hypatia', function() {
           resReligion = res.body[0];
           return Religion.findById(resReligion.id);
         })
-        .then(post => {
-          resReligion.name.should.equal(post.name);
-          resReligion.historicalRoots.should.equal(post.historicalRoots);
-          resReligion.basicBeliefs.should.equal(post.basicBeliefs);
-          resReligion.practices.should.equal(post.practices);
-          resReligion.organization.should.equal(post.organization);
-          resReligion.books.should.equal(post.books);
+        .then(religion => {
+          resReligion.name.should.equal(religion.name);
+          resReligion.historicalRoots.should.equal(religion.historicalRoots);
+          resReligion.basicBeliefs.should.equal(religion.basicBeliefs);
+          resReligion.practices.should.equal(religion.practices);
+          resReligion.organization.should.equal(religion.organization);
+          resReligion.books.should.deep.equal(religion.books);
         });
     });
   });
@@ -132,113 +131,106 @@ describe('Hypatia', function() {
     // the data was inserted into db)
     it('should add a new blog post', function() {
 
-      const newReligion = {
-
-          // title: faker.lorem.sentence(),
-          // author: {
-          //   firstName: faker.name.firstName(),
-          //   lastName: faker.name.lastName(),
-          // },
-          // content: faker.lorem.text()
-      };
+      const newReligion = mockReligions[0];
 
       return chai.request(app)
-        .post('/')
+        .post('/religion')
         .send(newReligion)
         .then(function(res) {
           res.should.have.status(201);
           res.should.be.json;
           res.body.should.be.a('object');
           res.body.should.include.keys(
-            'id', 'title', 'content', 'author', 'created');
-          res.body.title.should.equal(newPost.title);
+            'name', 'historicalRoots', 'basicBeliefs', 
+              'practices', 'organization', 'books');
+          res.body.name.should.equal(newReligion.name);
           // cause Mongo should have created id on insertion
           res.body.id.should.not.be.null;
-          res.body.author.should.equal(
-            `${newPost.author.firstName} ${newPost.author.lastName}`);
-          res.body.content.should.equal(newPost.content);
-          return BlogPost.findById(res.body.id);
+          res.body.historicalRoots.should.equal(newReligion.historicalRoots);
+          res.body.basicBeliefs.should.equal(newReligion.basicBeliefs);
+          res.body.practices.should.equal(newReligion.practices);
+          res.body.organization.should.equal(newReligion.organization);
+          res.body.books.should.deep.equal(newReligion.books);
+          return Religion.findById(res.body.id);
         })
-        .then(function(post) {
-          post.title.should.equal(newPost.title);
-          post.content.should.equal(newPost.content);
-          post.author.firstName.should.equal(newPost.author.firstName);
-          post.author.lastName.should.equal(newPost.author.lastName);
+        .then(function(religion) {
+          religion.name.should.equal(newReligion.name);
+          religion.historicalRoots.should.equal(newReligion.historicalRoots);
+          religion.basicBeliefs.should.equal(newReligion.basicBeliefs);
+          religion.practices.should.equal(newReligion.practices);
+          religion.organization.should.equal(newReligion.organization);
+          religion.books.should.deep.equal(newReligion.books);
         });
     });
-      // case for when something required wasn't given
-     // it('should not have ', function() {})
-     // ask for get all to count posts before
-     // make newPost, leaving out a key
-     // expect status 400)
-     // see if the count matches before and after;
   });
 
-  // describe('PUT endpoint', function() {
+  describe('PUT endpoint', function() {
 
-  //   // strategy:
-  //   //  1. Get an existing post from db
-  //   //  2. Make a PUT request to update that post
-  //   //  4. Prove post in db is correctly updated
-  //   it('should update fields you send over', function() {
-  //     const updateData = {
-  //       title: 'cats cats cats',
-  //       content: 'dogs dogs dogs',
-  //       author: {
-  //         firstName: 'foo',
-  //         lastName: 'bar'
-  //       }
-  //     };
+    // strategy:
+    //  1. Get an existing post from db
+    //  2. Make a PUT request to update that post
+    //  4. Prove post in db is correctly updated
+    it('should update fields you send over', function() {
+      const updateData = {
+        name: "garbage",
+        historicalRoots: "garbage",
+        basicBeliefs: "garbage",
+        practices: "garbage",
+        organization: "garbage",
+        books: ["garbage"]
+      };
 
-  //     return BlogPost
-  //       .findOne()
-  //       .then(post => {
-  //         updateData.id = post.id;
+      return Religion
+        .findOne()
+        .then(religion => {
+          updateData.id = religion.id;
 
-  //         return chai.request(app)
-  //           .put(`/posts/${post.id}`)
-  //           .send(updateData);
-  //       })
-  //       .then(res => {
-  //         res.should.have.status(204);
-  //         return BlogPost.findById(updateData.id);
-  //       })
-  //       .then(post => {
-  //         post.title.should.equal(updateData.title);
-  //         post.content.should.equal(updateData.content);
-  //         post.author.firstName.should.equal(updateData.author.firstName);
-  //         post.author.lastName.should.equal(updateData.author.lastName);
-  //       });
-  //   });
-  // });
+          return chai.request(app)
+            .put(`/religion/${religion.id}`)
+            .send(updateData);
+        })
+        .then(res => {
+          res.should.have.status(204);
+          return Religion.findById(updateData.id);
+        })
+        .then(religion => {
+          religion.name.should.equal(updateData.name);
+          religion.historicalRoots.should.equal(updateData.historicalRoots);
+          religion.basicBeliefs.should.equal(updateData.basicBeliefs);
+          religion.practices.should.equal(updateData.practices);
+          religion.organization.should.equal(updateData.organization);
+          religion.books.should.deep.equal(updateData.books);
+        });
+    });
+  });
 
-  // describe('DELETE endpoint', function() {
-  //   // strategy:
-  //   //  1. get a post
-  //   //  2. make a DELETE request for that post's id
-  //   //  3. assert that response has right status code
-  //   //  4. prove that post with the id doesn't exist in db anymore
-  //   it('should delete a post by id', function() {
+  describe('DELETE endpoint', function() {
+    // strategy:
+    //  1. get a post
+    //  2. make a DELETE request for that post's id
+    //  3. assert that response has right status code
+    //  4. prove that post with the id doesn't exist in db anymore
+    it('should delete a religion by id', function() {
 
-  //     let post;
+      let religion;
 
-  //     return BlogPost
-  //       .findOne()
-  //       .then(_post => {
-  //         post = _post;
-  //         return chai.request(app).delete(`/posts/${post.id}`);
-  //       })
-  //       .then(res => {
-  //         res.should.have.status(204);
-  //         return BlogPost.findById(post.id);
-  //       })
-  //       .then(_post => {
-  //         // when a variable's value is null, chaining `should`
-  //         // doesn't work. so `_post.should.be.null` would raise
-  //         // an error. `should.be.null(_post)` is how we can
-  //         // make assertions about a null value.
-  //         should.not.exist(_post);
-  //       });
-  //   });
-  // });
+      return Religion
+        .findOne()
+        .then(_religion => {
+          religion = _religion;
+          return chai.request(app).delete(`/religion/${religion.id}`);
+        })
+        .then(res => {
+          res.should.have.status(204);
+          return Religion.findById(religion.id);
+        })
+        .then(_religion => {
+          // when a variable's value is null, chaining `should`
+          // doesn't work. so `_post.should.be.null` would raise
+          // an error. `should.be.null(_post)` is how we can
+          // make assertions about a null value.
+          should.not.exist(_religion);
+        });
+    });
+  });
 });

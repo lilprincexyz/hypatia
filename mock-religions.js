@@ -7,7 +7,7 @@ exports.mockReligions =
             "basicBeliefs": "Eight-Fold Path",
             "practices": "meditation on citta",
             "organization": "Dhamma",
-            "books": "The Dhammapada",
+            "books": ["The Dhammapada"],
             "created": 1470016976609
         },
         {
@@ -17,7 +17,7 @@ exports.mockReligions =
             "basicBeliefs": "Christ as Messiah",
             "practices": "prayer to Christ",
             "organization": "Church",
-            "books": "The Holy Bible",
+            "books": ["The Holy Bible"],
             "created": 1470012976609
         },
         {
@@ -27,7 +27,7 @@ exports.mockReligions =
             "basicBeliefs": "Muhammad as Allah's prophet",
             "practices": "prayer to Allah",
             "organization": "Mosque",
-            "books": "The Quran",
+            "books": ["The Quran"],
             "created": 1470011976609
         },
         {
@@ -37,7 +37,7 @@ exports.mockReligions =
             "basicBeliefs": "The Shema Yisrael",
             "practices": "prayer to Adonai",
             "organization": "Synagogue",
-            "books": "The Torah",
+            "books": ["The Torah"],
             "created": 1470009976609
         }
 ];               
