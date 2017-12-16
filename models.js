@@ -49,6 +49,6 @@ religionSchema.methods.apiRepr = function() {
 }
 
 // a call made to `.model`.
-const Religion = mongoose.model('religion', religionSchema);
+const Religion = mongoose.model('Religion', religionSchema, 'religion');
 
 module.exports = {Religion};

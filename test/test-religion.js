@@ -145,7 +145,6 @@ describe('Hypatia API resource', function() {
           res.body.practices.should.equal(religion.practices);
           res.body.organization.should.equal(religion.organization);
           res.body.books.should.deep.equal(religion.books);
-          //add all fields
         })
     });
   });
