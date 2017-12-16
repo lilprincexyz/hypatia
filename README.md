@@ -19,10 +19,10 @@ Initial wireframes for the home page can be seen below. Wireframes of all key pr
 
 The app was designed to work on mobile as well as tablet and desktop from the outset. 
 
-##Live Site
+## Live Site
 You can access an early MVP of HYPATIA by the last week of December.
 
-##Technical
+## Technical
 * The app is built using the MEAN stack. The front-end is built using HTML5, CSS3 and JavaScript, the back-end using NodeJS with ExpressJS as the web server and MongoDB as the database.
 * The app is fully responsive, adapting for mobile, table and desktop viewports.
 * All routing is handled in the back-end by Express.
