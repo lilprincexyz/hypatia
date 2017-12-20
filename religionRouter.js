@@ -15,7 +15,8 @@ router.get('/', (req, res) => {
   Religion
     .find()
     .then(religion => {
-      res.json(religion.map(religion => religion.apiRepr()));
+      const religions = religion.map(religion => religion.apiRepr());
+      res.render("religions", {religions, hi:"Hi world!"});
     })
     .catch(err => {
       console.error(err);
@@ -26,7 +27,9 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Religion
     .findById(req.params.id)
-    .then(religion => res.json(religion.apiRepr()))
+    .then(religion => {
+      res.render("religionDetail", {religion:religion.apiRepr()})
+    })
     .catch(err => {
       console.error(err);
       res.status(500).json({error: 'something went horribly awry'});

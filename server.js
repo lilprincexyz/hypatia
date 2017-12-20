@@ -16,7 +16,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(morgan('common'));
 app.use(express.static('public'));
-
+app.set('views', './views');
+app.set('view engine', 'ejs');
 app.use('/religion', religionRouter);
 
 let server;
