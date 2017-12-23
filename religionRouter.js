@@ -6,10 +6,9 @@ const jsonParser = bodyParser.json();
 
 const {Religion} = require('./models');
 
-// add endpoint for GET. It should call `BlogPosts.get()`
-// and return JSON objects of stored blog posts.
-// send back JSON representation of all blog posts
-// on GET requests to root
+router.get("/new", (req, res) => {
+  res.render("newReligion")
+});
 
 router.get('/', (req, res) => {
   Religion
@@ -43,6 +42,7 @@ router.get('/:id', (req, res) => {
 // send a 400 error if the post doesn't contain
 // `title`, `content`, and `author`
 router.post('/', jsonParser, (req, res) => {
+  console.log(JSON.stringify(req.body));
   // ensure `name` and `budget` are in request body
   const requiredFields = ['name', 'historicalRoots', 'basicBeliefs', 
                           'practices', 'organization', 'books'];
@@ -107,7 +107,6 @@ router.delete('/:id', (req, res) => {
       res.status(204).end();
     });
 });
-
 
 router.use('*', function(req, res) {
   res.status(404).json({message: 'Not Found'});
