@@ -42,7 +42,6 @@ router.get('/:id', (req, res) => {
 // send a 400 error if the post doesn't contain
 // `title`, `content`, and `author`
 router.post('/', jsonParser, (req, res) => {
-  console.log(JSON.stringify(req.body));
   // ensure `name` and `budget` are in request body
   const requiredFields = ['name', 'historicalRoots', 'basicBeliefs', 
                           'practices', 'organization', 'books'];
@@ -57,7 +56,16 @@ router.post('/', jsonParser, (req, res) => {
 
   //req.body instead of all required fields
   const item = Religion.create(req.body)
-    .then(religion => res.status(201).json(religion.apiRepr()))
+    .then(religion => {
+      const apiRepr = religion.apiRepr() 
+      const resObject = Object.assign({}, apiRepr)
+      resObject.id = religion.id
+
+      console.log(JSON.stringify(resObject))
+
+      // console.log(JSON.stringify(apiRepr))
+      res.status(201).json(resObject)
+    })
     .catch(err => {
         console.error(err);
         res.status(500).json({error: 'Something went wrong'});

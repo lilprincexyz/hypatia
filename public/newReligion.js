@@ -17,6 +17,14 @@ $newReligionForm.on("submit", function(event) {
 		organization: $organization.val(),
 		books: [$books.val()]
 	};
-	$.post({url: "../religion/", data: religion, dataType: "json"});
+	$.ajax({
+		method: "POST",
+		contentType: "application/json",
+		url: "../religion/", 
+		data: JSON.stringify(religion)
+	})
+	.then(res => {
+		window.location.href= "../religion/"
+	})
 
 }) 
