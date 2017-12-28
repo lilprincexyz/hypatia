@@ -1,42 +1,16 @@
 <%- include("./_header.ejs") %>
-  <body>
-  	<h1>Browse Religions</h1>
-  	<% religions.forEach(function (religion){ %>
-  	<div><a href="./<%= religion.id %>"><%= religion.name %></a></div>
-  	<% })%>
-    <a href="../religion/new">Add Religion</a>
-<!--     <button>Sort</button> -->
-    <!-- <select class="search-group" name="group"><option>Select Religious Heritage Group</option>
-      <optgroup label="Religious Heritage Groups">
-        <option value="Christian Heritage Groups" data-cpo="false">&nbsp;Christian Heritage Groups&nbsp;
-          <optgroup label="Religions">
-            <option value="The Foundation Faith of God" data-cpo="false">&nbsp;The Foundation Faith of God&nbsp;
-            </option>
-            <option value="The Family of Love" data-cpo="false">&nbsp;The Family of Love&nbsp;
-            </option>
-            <option value="Church of Jesus Christ of Latter-Day Saints" data-cpo="false">&nbsp;Church of Jesus Christ of Latter-Day Saints&nbsp;
-            </option>
-            <option value="Holy Spirit Association for the Unification of World Christianity" data-cpo="false">&nbsp;Holy Spirit Association for the Unification of World Christianity&nbsp;
-            </option>
-            <option value="The Church of Christ Scientist" data-cpo="false">&nbsp;The Church of Christ Scientist&nbsp;
-            </option> 
-          </optgroup>
-        </option>
-        <option value="Indian Heritage Groups" data-cpo="false">&nbsp;Indian Heritage Groups&nbsp;
-        </option>
-        <option value="Islamic Heritage Groups" data-cpo="false">&nbsp;Islamic Heritage Groups&nbsp;
-        </option>
-        <option value="Japanese Heritage Groups" data-cpo="false">&nbsp;Japanese Heritage Groups&nbsp;
-        </option>
-        <option value="Jewish Groups" data-cpo="false">&nbsp;Jewish Groups&nbsp;
-        </option>
-        <option value="Sikh/Sant/Mat Groups" data-cpo="false">&nbsp;Sikh/Sant/Mat Groups&nbsp;
-        </option>
-        <option value="Other Groups" data-cpo="false">&nbsp;Jewish Groups&nbsp;
-        </option>
-      </optgroup>
-    </select> -->
 
+  	<span>BROWSE RELIGIONS</span>
+  	<% religions.forEach(function (religion){ %>
+      <div id="religion">
+      <span>
+        <a href="./<%= religion.id %>">
+        <%= religion.name %></a>
+      </span>
+      </div>
+  	<% })%>
+    <a href="../religion/new">Add Religion</a>  
+    </div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </body>
 </html>

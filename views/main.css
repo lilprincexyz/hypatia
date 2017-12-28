@@ -13,7 +13,7 @@ html {
 }
 #stars:after {
   content: " ";
-  position: absolute;
+/*  position: absolute;*/
   top: 2000px;
   width: 1px;
   height: 1px;
@@ -30,7 +30,7 @@ html {
 }
 #stars2:after {
   content: " ";
-  position: absolute;
+/*  position: absolute;*/
   top: 2000px;
   width: 2px;
   height: 2px;
@@ -47,7 +47,7 @@ html {
 }
 #stars3:after {
   content: " ";
-  position: absolute;
+/*  position: absolute;*/
   top: 2000px;
   width: 3px;
   height: 3px;
@@ -56,18 +56,18 @@ html {
 }
 
 #title {
-  position: absolute;
+  margin: auto;
+ /* position: absolute;
   top: 50%;
   left: 0;
   right: 0;
   color: #FFF;
   text-align: center;
-  font-family: "lato", sans-serif;
   font-weight: 300;
-  font-size: 50px;
-  letter-spacing: 10px;
-  margin-top: -60px;
-  padding-left: 10px;
+  font-size: 18px;*/
+ /* letter-spacing: 10px;*/
+/*  margin-top: -60px;
+  padding-left: 10px;*/
 }
 #title span {
   background: -webkit-linear-gradient(white, #38495a);
