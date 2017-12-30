@@ -1,9 +1,26 @@
 html {
   height: 100%;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  overflow: hidden;
+  overflow: scroll;
 }
 
+/*aos animation*/
+* {
+  box-sizing: border-box;
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+/*  margin: auto;*/
+/*  padding-top: 0;*/
+  background: none;
+  text-align: center;
+/*  color: transparent;*/
+  font-size: 1.25em;
+}
+
+/* religion endpoint */
 #stars {
   width: 1px;
   height: 1px;
@@ -65,11 +82,12 @@ html {
   font-family: "lato", sans-serif;
   font-weight: 300;
   font-size: 2em;
-  letter-spacing: 10px;
+/*  letter-spacing: 5px;*/
   margin-top: -350px;
   padding-left: 10px;
 }
-#title span {
+
+#title h1, #title h2 {
   background: -webkit-linear-gradient(white, #38495a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -82,4 +100,32 @@ html {
   to {
     transform: translateY(-2000px);
   }
+}
+
+/* religion/:id endpoint */
+#title2 {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  color: #FFF;
+  text-align: center;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
+/*  letter-spacing: 5px;*/
+  margin-top: -350px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#title2 h1, #title2 h2, #title2 p {
+  background: -webkit-linear-gradient(white, #38495a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#title p {
+  text-align: left;
+  text-indent: 50%;
 }

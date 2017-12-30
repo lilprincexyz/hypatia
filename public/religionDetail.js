@@ -1,3 +1,7 @@
+AOS.init({
+  duration: 1200,
+})
+
 $(function() {
 	const deleteButton = $("#deleteButton")
 	const religionId = deleteButton.data("religion-id")
