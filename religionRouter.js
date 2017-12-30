@@ -23,6 +23,18 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id/edit', (req, res) => {
+  Religion
+    .findById(req.params.id)
+    .then(religion => {
+      res.render("editReligion", {religion:religion.apiRepr()})
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went horribly awry'});
+    });
+});
+
 router.get('/:id', (req, res) => {
   Religion
     .findById(req.params.id)

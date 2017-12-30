@@ -26,5 +26,4 @@ $newReligionForm.on("submit", function(event) {
 	.then(res => {
 		window.location.href= "../religion/"
 	})
-
 }) 
