@@ -2,7 +2,9 @@
   <body>
   	<div id="title2" class="item" data-aos="fade-up">
       <h1><%= religion.name %></h1>
-    
+      
+      <button id="editButton" data-religion-id="<%= religion.id %>">Edit Religion</button>
+
       <button id="deleteButton" data-religion-id="<%= religion.id %>">Delete Religion</button>
       
       <h2>HISTORICAL ROOTS</h2>

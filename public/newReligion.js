@@ -1,4 +1,3 @@
-// alert("Hello World!");
 const $newReligionForm = $("#newReligionForm");
 const $name = $("#name");
 const $historicalRoots = $("#historicalRoots");

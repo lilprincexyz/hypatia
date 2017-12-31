@@ -98,7 +98,8 @@ router.delete('/:id', (req, res) => {
 
 
 router.put('/:id', (req, res) => {
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+  console.log(req.body)
+  if (!(req.params.id.trim() && req.body.id.trim() && req.params.id.trim() === req.body.id.trim())) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'
     });
