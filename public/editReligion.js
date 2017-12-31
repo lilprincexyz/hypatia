@@ -25,11 +25,11 @@ $(function() {
 		$.ajax({
 		method: "PUT",
 		contentType: "application/json",
-		url: "./religion/" + $id, 
+		url: "/religion/" + religionId, 
 		data: JSON.stringify(religion)
 		})
 		.then(res => {
-			window.location.href= "./religion/" + $id	
+			window.location.href= "/religion/" + religionId
 		})
 	}) 
 }) 

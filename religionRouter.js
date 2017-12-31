@@ -6,6 +6,7 @@ const jsonParser = bodyParser.json();
 
 const {Religion} = require('./models');
 
+// auth required
 router.get("/new", (req, res) => {
   res.render("newReligion")
 });
@@ -23,6 +24,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// auth required
 router.get('/:id/edit', (req, res) => {
   Religion
     .findById(req.params.id)
@@ -47,12 +49,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// add endpoint for POST requests, which should cause a new
-// blog post to be added (using `BlogPosts.create()`). It should
-// return a JSON object representing the new post (including
-// the id, which `BlogPosts` will create. This endpoint should
-// send a 400 error if the post doesn't contain
-// `title`, `content`, and `author`
+// auth required
 router.post('/', jsonParser, (req, res) => {
   // ensure `name` and `budget` are in request body
   const requiredFields = ['name', 'historicalRoots', 'basicBeliefs', 
@@ -84,6 +81,7 @@ router.post('/', jsonParser, (req, res) => {
     });
 });
 
+// auth required
 router.delete('/:id', (req, res) => {
   Religion
     .findByIdAndRemove(req.params.id)
@@ -96,9 +94,8 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-
+// auth required
 router.put('/:id', (req, res) => {
-  console.log(req.body)
   if (!(req.params.id.trim() && req.body.id.trim() && req.params.id.trim() === req.body.id.trim())) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'
@@ -120,6 +117,7 @@ router.put('/:id', (req, res) => {
     .catch(err => res.status(500).json({message: 'Something went wrong'}));
 });
 
+// auth required
 router.delete('/:id', (req, res) => {
   Religion
     .findByIdAndRemove(req.params.id)
