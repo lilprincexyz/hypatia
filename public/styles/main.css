@@ -1,7 +1,7 @@
 html {
   height: 100%;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  overflow: scroll;
+/*  overflow: scroll;*/
 }
 
 /*aos animation*/
@@ -11,11 +11,11 @@ html {
 
 .item {
   width: 100%;
-  height: 100%;
+  height: 75%
 /*  margin: auto;*/
 /*  padding-top: 0;*/
   background: none;
-  text-align: center;
+  /*text-align: center;*/
 /*  color: transparent;*/
   font-size: 1.25em;
 }
@@ -119,10 +119,15 @@ html {
   padding-right: 10px;
 }
 
-h1, #title2 h1, #title2 h2, #title2 p {
+h1, #title2 h1, #title2 h2, #title2 p, label {
   background: -webkit-linear-gradient(white, #38495a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+#title2 p {
+  text-align: left;
+  text-indent: 5%;
 }
 
 #title p {
@@ -136,6 +141,17 @@ h1, #title2 h1, #title2 h2, #title2 p {
   padding-top: 100px;
 }
 
-.editName {
-  width: 50%;
+.edit {
+  width: 75%;
+  display: block;
+  font-size: 100%;
+  font-family: inherit;
+  margin: 0;
+}
+
+#historicalRoots, #basicBeliefs, #practices, #organization {
+  width: 100%;
+  height: 200px;
+  display: inline;
+  float: left;
 }

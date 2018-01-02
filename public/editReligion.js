@@ -1,7 +1,7 @@
 $(function() {
 	const $editReligionForm = $("#editReligionForm")
 	const $name = $("#name");
-	const API_URL = "http://localhost:8080";
+	// const API_URL = "http://localhost:8080";
 	const $id = $("#editReligionForm");
 	const religionId = $id.data("religion-id");
 	console.log(religionId)
