@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const {Religion} = require('./models');
+const passportConfig = require('./passport-config');
 
 // auth required
 router.get("/new", (req, res) => {
@@ -12,6 +13,7 @@ router.get("/new", (req, res) => {
 });
 
 router.get('/', (req, res) => {
+  console.log(JSON.stringify(passportConfig.get));
   Religion
     .find()
     .then(religion => {
@@ -41,6 +43,7 @@ router.get('/:id', (req, res) => {
   Religion
     .findById(req.params.id)
     .then(religion => {
+      console.log(req.user);
       res.render("religionDetail", {religion:religion.apiRepr()})
     })
     .catch(err => {
