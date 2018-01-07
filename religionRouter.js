@@ -5,20 +5,22 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const {Religion} = require('./models');
-const passportConfig = require('./passport-config');
+const passport = require('passport');
 
 // auth required
 router.get("/new", (req, res) => {
+  if(!req.isAuthenticated()) {
+    res.redirect("../login");
+  }
   res.render("newReligion")
 });
 
 router.get('/', (req, res) => {
-  console.log(JSON.stringify(passportConfig.get));
   Religion
     .find()
     .then(religion => {
       const religions = religion.map(religion => religion.apiRepr());
-      res.render("religions", {religions, hi:"Hi world!"});
+      res.render("religions", {religions, user:req.user});
     })
     .catch(err => {
       console.error(err);
@@ -28,6 +30,9 @@ router.get('/', (req, res) => {
 
 // auth required
 router.get('/:id/edit', (req, res) => {
+  if(!req.isAuthenticated()) {
+    res.redirect("../login");
+  }
   Religion
     .findById(req.params.id)
     .then(religion => {
@@ -44,7 +49,7 @@ router.get('/:id', (req, res) => {
     .findById(req.params.id)
     .then(religion => {
       console.log(req.user);
-      res.render("religionDetail", {religion:religion.apiRepr()})
+      res.render("religionDetail", {religion:religion.apiRepr(), user:req.user})
     })
     .catch(err => {
       console.error(err);
@@ -54,6 +59,9 @@ router.get('/:id', (req, res) => {
 
 // auth required
 router.post('/', jsonParser, (req, res) => {
+  if(!req.isAuthenticated()) {
+    res.status(401).json({message: "You need to login."});
+  } 
   // ensure `name` and `budget` are in request body
   const requiredFields = ['name', 'historicalRoots', 'basicBeliefs', 
                           'practices', 'organization', 'books'];
@@ -86,6 +94,9 @@ router.post('/', jsonParser, (req, res) => {
 
 // auth required
 router.delete('/:id', (req, res) => {
+  if(!req.isAuthenticated()) {
+    res.status(401).json({message: "You need to login."});
+  } 
   Religion
     .findByIdAndRemove(req.params.id)
     .then(() => {
@@ -99,6 +110,9 @@ router.delete('/:id', (req, res) => {
 
 // auth required
 router.put('/:id', (req, res) => {
+  if(!req.isAuthenticated()) {
+    res.status(401).json({message: "You need to login."});
+  } 
   if (!(req.params.id.trim() && req.body.id.trim() && req.params.id.trim() === req.body.id.trim())) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'
@@ -118,16 +132,6 @@ router.put('/:id', (req, res) => {
     .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
     .then(updatedPost => res.status(204).end())
     .catch(err => res.status(500).json({message: 'Something went wrong'}));
-});
-
-// auth required
-router.delete('/:id', (req, res) => {
-  Religion
-    .findByIdAndRemove(req.params.id)
-    .then(() => {
-      console.log(`Deleted blog post with id \`${req.params.ID}\``);
-      res.status(204).end();
-    });
 });
 
 router.use('*', function(req, res) {

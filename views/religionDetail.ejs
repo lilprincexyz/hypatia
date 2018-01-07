@@ -3,12 +3,13 @@
   	<div id="title2" class="item" data-aos="fade-up">
       <h1><%= religion.name %></h1>
 
-      <a href="../religion"><button>Back to Home</button></a>
+      <a href="../religion"><button class="buttons">Back to Home</button></a>
       
-      <button id="editButton" data-religion-id="<%= religion.id %>">Edit Religion</button>
+      <% if(user) { %>
+        <button class="buttons" id="editButton" data-religion-id="<%= religion.id %>">Edit Religion</button>
 
-      <button id="deleteButton" data-religion-id="<%= religion.id %>">Delete Religion</button>
-
+        <button class="buttons" id="deleteButton" data-religion-id="<%= religion.id %>">Delete Religion</button>
+      <% } %>
       
       <h2>HISTORICAL ROOTS</h2>
         <p class="item" data-aos="fade-up">

@@ -1,13 +1,30 @@
-<form action="/login" method="post">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username"/>
-    </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
-    </div>
-    <div>
-        <input type="submit" value="Log In"/>
-    </div>
-</form>
+<%- include("./_header.ejs") %>
+    <body class="login">
+        <div id='stars'></div>
+        <div id='stars2'></div>
+        <div id='stars3'></div>
+
+        <header role="banner">
+            <h1>HYPATIA</h1>
+        </header>
+        <main>
+            <form action="/login" class="login-section" method="post">
+                <fieldset>
+                    <h1>Log In</h1>
+                        <label for="username">Username</label>
+                        <input type="text" placeholder="hypatia" name="username" required/>
+                    
+                        <label for="password">Password</label>
+                        <input type="password" placeholder="1-religion" name="password" required/>            
+                    
+                        <button type="submit">Log in</button>       
+                </fieldset>
+            </form>
+        </main>
+        <footer>
+          <p>Don't want an account? 
+            <a href="/religion"> Browse as a guest</a>
+          </p>
+        </footer>
+    </body>
+</html>

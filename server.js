@@ -23,7 +23,7 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 app.use(flash());
-const passport = passportConfig.configurePassport(app);
+const passport = passportConfig(app);
 app.use('/religion', religionRouter);
 
 app.get("/login", (req, res) => {

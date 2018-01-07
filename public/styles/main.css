@@ -79,7 +79,7 @@ html {
   right: 0;
   color: #FFF;
   text-align: center;
-  font-family: "lato", sans-serif;
+  font-family: "lato", helvetica, sans-serif;
   font-weight: 300;
   font-size: 2em;
 /*  letter-spacing: 5px;*/
@@ -110,7 +110,7 @@ html {
   right: 0;
   color: #FFF;
   text-align: center;
-  font-family: "lato", sans-serif;
+  font-family: "lato", helvetica, sans-serif;
   font-weight: 300;
   font-size: 1.25em;
 /*  letter-spacing: 5px;*/
@@ -154,4 +154,150 @@ h1, #title2 h1, #title2 h2, #title2 p, label {
   height: 200px;
   display: inline;
   float: left;
+}
+
+/* login endpoint */
+.login {
+  overflow: hidden;
+  padding: 60px 0 0;
+  margin: 0;
+  font-size: 18px;
+  font-family: "lato", helvetica, sans-serif;
+}
+
+header h1{
+  text-align: center;
+  font-family: "lato", helvetica, sans-serif;
+  font-weight: 450;
+}
+
+/*header img as rule selector works too*/
+.icon {
+  display: block;
+  height: 35px;
+  margin: 0 auto 30px;
+  width: auto;
+}
+
+fieldset {
+  border: 0;
+}
+
+.login-section {
+  width: 400px;
+  padding: 40px;
+  border-radius: 3px;
+  background: none;
+  margin: 0 auto;
+}
+
+.login-section h1 {
+  width: 100%;
+  line-height: 38px;
+  font-size: 35px;
+  font-family: "lato", helvetica, sans-serif;
+  font-weight: 300;
+  color: #565656;
+  text-align: center;
+  letter-spacing: 0;
+  margin: 0 auto 45px;
+}
+
+input, button {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fcfcfc;
+  margin: 10px auto 20px;
+  font-size: 18px;
+  text-align: left;
+  padding: 15px;
+  border: 2px solid #e7e7e7;
+  border-radius: 3px;
+  transition: opacity 0.4s;
+}
+
+button {
+  height: auto;
+  font-size: 22px;
+  font-weight: 500;
+  font-family: "lato", helvetica, sans-serif;
+  text-align: center;
+  /*color: white;*/
+  background-color: black;
+  color: white;
+  border: 0;
+  cursor: pointer;
+  margin-bottom: 0;
+  transition: all 1s;
+}
+
+/* A Firefox bug */
+input[type="email"]:focus,
+input[type="password"]:focus,
+button[type="submit"]:focus {
+ /* Restore desirable focus behavior */
+ /*in non-webkit browsers like Firefox */
+ outline: auto 2px #87ceeb;
+  /*Preseve default focus behavior in webkit browsers */
+ outline: auto 5px -webkit-focus-ring-color;
+ box-shadow: 0;
+}
+
+button:hover,
+button:focus {
+  background-color: #15CD72;
+  /*-webkit-transition: background 0.1s;*/
+  /*-moz-transition: background 0.1s;*/
+  /*-o-transition: background 0.1s;*/
+}
+
+.login-section p {
+  font-size: 16px;
+  text-align: center;
+  margin: 10px 0 0;
+  color: #696969;
+}
+
+.login-section a {
+  color: #999;
+  text-decoration: none;
+  border-bottom: 1px solid #bbb;
+}
+
+.login-section a:hover {
+  border-color: #999;
+  color: #777;
+}
+
+
+footer {
+  text-align: center;
+  color: #565656;
+  margin: 20px auto;
+  font-weight: 600;
+  font-family: "lato", helvetica, sans-serif;
+  border: 0;
+  padding: 0;
+}
+
+footer a {
+  color: white;
+}
+
+footer a:hover {
+  color: #E7F1F9; 
+}
+
+/* buttons */
+.buttons {
+  width: 20%;
+}
+
+.buttons a {
+  outline: none;
+}
+
+#deleteButton:hover, #deleteButton:focus {
+  background-color: red; 
 }
