@@ -61,6 +61,12 @@ userSchema.methods.validPassword = function(password) {
   return password === this.password
 }
 
+userSchema.methods.apiRepr = function() {
+  return {
+    id: this._id,
+    username: this.username
+  };
+}
 const User = mongoose.model('User', userSchema, 'user');
 
 module.exports = {Religion, User};

@@ -83,7 +83,6 @@ router.post('/', jsonParser, (req, res) => {
 
       console.log(JSON.stringify(resObject))
 
-      // console.log(JSON.stringify(apiRepr))
       res.status(201).json(resObject)
     })
     .catch(err => {

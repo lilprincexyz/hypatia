@@ -57,7 +57,7 @@ app.post('/newUser', (req, res) => {
       console.log(JSON.stringify(user))
 
       // console.log(JSON.stringify(apiRepr))
-      res.redirect('/religion');
+      res.status(201).json(user.apiRepr());
     })
     .catch(err => {
         console.error(err);

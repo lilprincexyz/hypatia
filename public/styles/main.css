@@ -296,6 +296,8 @@ footer a:hover {
 
 .buttons a {
   outline: none;
+  color: white;
+  text-decoration: none;
 }
 
 #deleteButton:hover, #deleteButton:focus {

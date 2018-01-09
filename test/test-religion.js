@@ -77,50 +77,8 @@ describe('Hypatia API resource', function() {
         .then(_res => {
           res = _res;
           res.should.have.status(200);
-          // otherwise our db seeding didn't work
-
-          console.log(JSON.stringify(res));
-          res.body.should.be.a('array');  
-
-          return Religion.count();
+          res.should.be.html; 
         })
-        .then(count => {
-          // the number of returned posts should be same
-          // as number of posts in DB
-        });
-    });
-
-    it('should return religions with right fields', function() {
-      // Strategy: Get back all posts, and ensure they have expected keys
-
-      let resReligion;
-      return chai.request(app)
-        .get('/religion')
-        .then(function(res) {
-
-          res.should.have.status(200);
-          res.should.be.json;
-          res.body.should.be.a('array');
-          res.body.should.have.length.of.at.least(1);
-
-          res.body.forEach(function(religion) {
-            religion.should.be.a('object');
-            religion.should.include.keys('name', 'historicalRoots', 'basicBeliefs', 
-              'practices', 'organization', 'books');
-          });
-          // just check one of the posts that its values match with those in db
-          // and we'll assume it's true for rest
-          resReligion = res.body[0];
-          return Religion.findById(resReligion.id);
-        })
-        .then(religion => {
-          resReligion.name.should.equal(religion.name);
-          resReligion.historicalRoots.should.equal(religion.historicalRoots);
-          resReligion.basicBeliefs.should.equal(religion.basicBeliefs);
-          resReligion.practices.should.equal(religion.practices);
-          resReligion.organization.should.equal(religion.organization);
-          resReligion.books.should.deep.equal(religion.books);
-        });
     });
 
     it('should return religion by id', function() {
@@ -137,14 +95,7 @@ describe('Hypatia API resource', function() {
         })
         .then(res => {
           res.should.have.status(200);
-          res.should.be.json;
-          res.body.should.be.a('object');
-          res.body.name.should.equal(religion.name);
-          res.body.historicalRoots.should.equal(religion.historicalRoots);
-          res.body.basicBeliefs.should.equal(religion.basicBeliefs);
-          res.body.practices.should.equal(religion.practices);
-          res.body.organization.should.equal(religion.organization);
-          res.body.books.should.deep.equal(religion.books);
+          res.should.be.html;
         })
     });
   });

@@ -3,7 +3,7 @@
   	<div id="title2" class="item" data-aos="fade-up">
       <h1><%= religion.name %></h1>
 
-      <a href="../religion"><button class="buttons">Back to Home</button></a>
+      <button class="buttons"><a href="../religion">Back to Home</a></button>
       
       <% if(user) { %>
         <button class="buttons" id="editButton" data-religion-id="<%= religion.id %>">Edit Religion</button>
