@@ -51,4 +51,22 @@ religionSchema.methods.apiRepr = function() {
 // a call made to `.model`.
 const Religion = mongoose.model('Religion', religionSchema, 'religion');
 
-module.exports = {Religion};
+// a schema to represent an authorized user
+const userSchema = mongoose.Schema({
+  username: {type: String, required: true},
+  password: {type: String, required: true}
+});
+
+userSchema.methods.validPassword = function(password) {
+  return password === this.password
+}
+
+userSchema.methods.apiRepr = function() {
+  return {
+    id: this._id,
+    username: this.username
+  };
+}
+const User = mongoose.model('User', userSchema, 'user');
+
+module.exports = {Religion, User};
