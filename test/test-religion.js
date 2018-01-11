@@ -1,6 +1,5 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const faker = require('faker');
 const mongoose = require('mongoose');
 
 // this makes the should syntax available throughout
@@ -13,6 +12,13 @@ const {closeServer, runServer, app} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
 const {mockReligions} = require('../mock-religions');
 chai.use(chaiHttp);
+
+const userCredentials = {
+  username: 'testUserName1', 
+  password: 'testUserNamePassword'
+}
+
+const agent = chai.request.agent(app);
 
 
 // this function deletes the entire database.
@@ -30,9 +36,6 @@ function tearDownDb() {
 
 // used to put randomish documents in db
 // so we have data to work with and assert about.
-// we use the Faker library to automatically
-// generate placeholder values for author, title, content
-// and then we insert that data into mongo
 function seedReligionData() {
   console.info('seeding religion data');
   // this will return a promiseø
@@ -43,11 +46,19 @@ function seedReligionData() {
 describe('Hypatia API resource', function() {
 
   before(function() {
-    return runServer(TEST_DATABASE_URL);
+    return runServer(TEST_DATABASE_URL).then(() => {
+    });
   });
 
   beforeEach(function() {
-    return seedReligionData();
+    return seedReligionData().then(() => {
+      return agent
+        .post('/newUser')
+        .send(userCredentials)
+    }).then(() => {
+        return agent.post('/login')
+        .send(userCredentials)
+    });
   });
 
   afterEach(function() {
@@ -100,113 +111,113 @@ describe('Hypatia API resource', function() {
     });
   });
 
-//   describe('POST endpoint', function() {
-//     // strategy: make a POST request with data,
-//     // then prove that the post we get back has
-//     // right keys, and that `id` is there (which means
-//     // the data was inserted into db)
-//     it('should add a new blog post', function() {
+   describe('POST endpoint', function() {
+     // strategy: make a POST request with data,
+     // then prove that the post we get back has
+     // right keys, and that `id` is there (which means
+     // the data was inserted into db)
+     it('should add a new religion', function() {
 
-//       const newReligion = mockReligions[0];
+       const newReligion = mockReligions[0];
 
-//       return chai.request(app)
-//         .post('/religion')
-//         .send(newReligion)
-//         .then(function(res) {
-//           res.should.have.status(201);
-//           res.should.be.json;
-//           res.body.should.be.a('object');
-//           res.body.should.include.keys(
-//             'name', 'historicalRoots', 'basicBeliefs', 
-//               'practices', 'organization', 'books');
-//           res.body.name.should.equal(newReligion.name);
-//           // cause Mongo should have created id on insertion
-//           res.body.id.should.not.be.null;
-//           res.body.historicalRoots.should.equal(newReligion.historicalRoots);
-//           res.body.basicBeliefs.should.equal(newReligion.basicBeliefs);
-//           res.body.practices.should.equal(newReligion.practices);
-//           res.body.organization.should.equal(newReligion.organization);
-//           res.body.books.should.deep.equal(newReligion.books);
-//           return Religion.findById(res.body.id);
-//         })
-//         .then(function(religion) {
-//           religion.name.should.equal(newReligion.name);
-//           religion.historicalRoots.should.equal(newReligion.historicalRoots);
-//           religion.basicBeliefs.should.equal(newReligion.basicBeliefs);
-//           religion.practices.should.equal(newReligion.practices);
-//           religion.organization.should.equal(newReligion.organization);
-//           religion.books.should.deep.equal(newReligion.books);
-//         });
-//     });
-//   });
+       return agent
+         .post('/religion')
+         .send(newReligion)
+         .then(function(res) {
+           res.should.have.status(201);
+           res.should.be.json;
+           res.body.should.be.a('object');
+           res.body.should.include.keys(
+             'name', 'historicalRoots', 'basicBeliefs', 
+               'practices', 'organization', 'books');
+           res.body.name.should.equal(newReligion.name);
+           // cause Mongo should have created id on insertion
+           res.body.id.should.not.be.null;
+           res.body.historicalRoots.should.equal(newReligion.historicalRoots);
+           res.body.basicBeliefs.should.equal(newReligion.basicBeliefs);
+           res.body.practices.should.equal(newReligion.practices);
+           res.body.organization.should.equal(newReligion.organization);
+           res.body.books.should.deep.equal(newReligion.books);
+           return Religion.findById(res.body.id);
+         })
+         .then(function(religion) {
+           religion.name.should.equal(newReligion.name);
+           religion.historicalRoots.should.equal(newReligion.historicalRoots);
+           religion.basicBeliefs.should.equal(newReligion.basicBeliefs);
+           religion.practices.should.equal(newReligion.practices);
+           religion.organization.should.equal(newReligion.organization);
+           religion.books.should.deep.equal(newReligion.books);
+         });
+     });
+   });
 
-//   describe('PUT endpoint', function() {
+   describe('PUT endpoint', function() {
 
-//     // strategy:
-//     //  1. Get an existing post from db
-//     //  2. Make a PUT request to update that post
-//     //  4. Prove post in db is correctly updated
-//     it('should update fields you send over', function() {
-//       const updateData = {
-//         name: "garbage",
-//         historicalRoots: "garbage",
-//         basicBeliefs: "garbage",
-//         practices: "garbage",
-//         organization: "garbage",
-//         books: ["garbage"]
-//       };
+     // strategy:
+     //  1. Get an existing post from db
+     //  2. Make a PUT request to update that post
+     //  4. Prove post in db is correctly updated
+     it('should update fields you send over', function() {
+       const updateData = {
+         name: "garbage",
+         historicalRoots: "garbage",
+         basicBeliefs: "garbage",
+         practices: "garbage",
+         organization: "garbage",
+         books: ["garbage"]
+       };
 
-//       return Religion
-//         .findOne()
-//         .then(religion => {
-//           updateData.id = religion.id;
+       return Religion
+         .findOne()
+         .then(religion => {
+           updateData.id = religion.id;
 
-//           return chai.request(app)
-//             .put(`/religion/${religion.id}`)
-//             .send(updateData);
-//         })
-//         .then(res => {
-//           res.should.have.status(204);
-//           return Religion.findById(updateData.id);
-//         })
-//         .then(religion => {
-//           religion.name.should.equal(updateData.name);
-//           religion.historicalRoots.should.equal(updateData.historicalRoots);
-//           religion.basicBeliefs.should.equal(updateData.basicBeliefs);
-//           religion.practices.should.equal(updateData.practices);
-//           religion.organization.should.equal(updateData.organization);
-//           religion.books.should.deep.equal(updateData.books);
-//         });
-//     });
-//   });
+           return agent
+             .put(`/religion/${religion.id}`)
+             .send(updateData);
+         })
+         .then(res => {
+           res.should.have.status(204);
+           return Religion.findById(updateData.id);
+         })
+         .then(religion => {
+           religion.name.should.equal(updateData.name);
+           religion.historicalRoots.should.equal(updateData.historicalRoots);
+           religion.basicBeliefs.should.equal(updateData.basicBeliefs);
+           religion.practices.should.equal(updateData.practices);
+           religion.organization.should.equal(updateData.organization);
+           religion.books.should.deep.equal(updateData.books);
+         });
+     });
+   });
 
-//   describe('DELETE endpoint', function() {
-//     // strategy:
-//     //  1. get a post
-//     //  2. make a DELETE request for that post's id
-//     //  3. assert that response has right status code
-//     //  4. prove that post with the id doesn't exist in db anymore
-//     it('should delete a religion by id', function() {
+   describe('DELETE endpoint', function() {
+     // strategy:
+     //  1. get a post
+     //  2. make a DELETE request for that post's id
+     //  3. assert that response has right status code
+     //  4. prove that post with the id doesn't exist in db anymore
+     it('should delete a religion by id', function() {
 
-//       let religion;
+       let religion;
 
-//       return Religion
-//         .findOne()
-//         .then(_religion => {
-//           religion = _religion;
-//           return chai.request(app).delete(`/religion/${religion.id}`);
-//         })
-//         .then(res => {
-//           res.should.have.status(204);
-//           return Religion.findById(religion.id);
-//         })
-//         .then(_religion => {
-//           // when a variable's value is null, chaining `should`
-//           // doesn't work. so `_post.should.be.null` would raise
-//           // an error. `should.be.null(_post)` is how we can
-//           // make assertions about a null value.
-//           should.not.exist(_religion);
-//         });
-//     });
-//   });
+       return Religion
+         .findOne()
+         .then(_religion => {
+           religion = _religion;
+           return agent.delete(`/religion/${religion.id}`);
+         })
+         .then(res => {
+           res.should.have.status(204);
+           return Religion.findById(religion.id);
+         })
+         .then(_religion => {
+           // when a variable's value is null, chaining `should`
+           // doesn't work. so `_post.should.be.null` would raise
+           // an error. `should.be.null(_post)` is how we can
+           // make assertions about a null value.
+           should.not.exist(_religion);
+         });
+     });
+   });
 });
