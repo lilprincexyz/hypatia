@@ -1,13 +1,12 @@
-html {
-  height: 100%;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-/*  overflow: scroll;*/
-}
-
-/*aos animation*/
-* {
+*, *:before, *:after {
   box-sizing: border-box;
 }
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+
 
 .item {
   width: 100%;
@@ -31,7 +30,6 @@ html {
 #stars:after {
   content: " ";
   position: absolute;
-  top: 2000px;
   width: 1px;
   height: 1px;
   background: transparent;
@@ -48,7 +46,6 @@ html {
 #stars2:after {
   content: " ";
   position: absolute;
-  top: 2000px;
   width: 2px;
   height: 2px;
   background: transparent;
@@ -65,7 +62,6 @@ html {
 #stars3:after {
   content: " ";
   position: absolute;
-  top: 2000px;
   width: 3px;
   height: 3px;
   background: transparent;
@@ -73,17 +69,12 @@ html {
 }
 
 #title {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
   color: #FFF;
   text-align: center;
   font-family: "lato", helvetica, sans-serif;
   font-weight: 300;
   font-size: 2em;
 /*  letter-spacing: 5px;*/
-  margin-top: -350px;
   padding-left: 10px;
 }
 
