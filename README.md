@@ -1,6 +1,6 @@
 # HYPATIA
-A Comparative Religion App portfolio project
-- a responsive MEAN stack app to catalogue all of the world's practicing religions.
+A Comparative Religion App project
+- a responsive stack app to catalogue all of the world's practicing religions.
 - early MVP release for user feedback expected by last week of December 2017.
 
 ![Screenshots](public/styles/pics/login.png)
@@ -17,10 +17,10 @@ Initial wireframes for the home page can be seen below. Wireframes of all key pr
 
 ![Initial Wireframes](public/styles/pics/wireframe.JPG)
 
-The app was designed to work on mobile as well as tablet and desktop from the outset. 
+The app was designed to work on mobile as well as tablet and desktop. 
 
 ## Live Site
-You can access HYPATIA at https://young-tundra-49854.herokuapp.com/.
+You can access HYPATIA at https://young-tundra-49854.herokuapp.com/religion.
 
 ## Technical
 * The app is built using the MEAN stack. The front-end is built using HTML5, CSS3 and JavaScript, the back-end using NodeJS with ExpressJS as the web server and MongoDB as the database.
@@ -31,6 +31,6 @@ You can access HYPATIA at https://young-tundra-49854.herokuapp.com/.
 * Extensive form validation and error handling is demonstrated throughout the app. On the front-end, field type, value, length etc is validated using HTML. On the back-end a Mongoose schema provides further error checking for field values and uniqueness.
 * An extensive API has been built to provide database access to the app using ExpressJS, with separate endpoints constructed.
 * The app is fully unit tested on the front and back-end. For the back-end, Mocha and Chai.
-* The Mongo database is further secured with JWT authentication. 
+* The Mongo database is further secured with Passport authentication. 
 * The app is deployed using Heroku.
 
