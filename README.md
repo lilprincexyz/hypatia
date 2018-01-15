@@ -3,7 +3,7 @@ A Comparative Religion App portfolio project
 - a responsive MEAN stack app to catalogue all of the world's practicing religions.
 - early MVP release for user feedback expected by last week of December 2017.
 
-![Screenshots](hypatia-index.png)
+![Screenshots](public/styles/pics/login.png)
 
 ## Introduction
 Hypatia allows you to read entries stored from other users stored into the database. The name Hypatia hearkens back to the historic period when the Library of Alexandria still stood and mystery schools abound. Like Wikipedia, users will also be able to add new entries of religion that will update and store into the database.
@@ -15,12 +15,12 @@ Why is this app useful? A typical internet user chats with others in forums and 
 
 Initial wireframes for the home page can be seen below. Wireframes of all key processes were designed along with data flow for key data processing tasks.
 
-<!-- ![Initial Wireframes](blank.png) -->
+![Initial Wireframes](public/styles/pics/wireframe.jpg)
 
 The app was designed to work on mobile as well as tablet and desktop from the outset. 
 
 ## Live Site
-You can access an early MVP of HYPATIA by the last week of December.
+You can access HYPATIA at https://young-tundra-49854.herokuapp.com/.
 
 ## Technical
 * The app is built using the MEAN stack. The front-end is built using HTML5, CSS3 and JavaScript, the back-end using NodeJS with ExpressJS as the web server and MongoDB as the database.

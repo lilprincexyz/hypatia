@@ -1,4 +1,4 @@
-//required installs
+// required installs
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -24,8 +24,10 @@ app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 app.use(flash());
 const passport = passportConfig(app);
+app.use('/', religionRouter);
 app.use('/religion', religionRouter);
 
+// login auth with passport
 app.get("/login", (req, res) => {
   res.render("login");
 })
@@ -36,6 +38,7 @@ app.post('/login',
                                    failureFlash: true })
 );
 
+// signup endpoint
 app.get("/newUser", (req, res) => {
   res.render("newUser");
 })
@@ -56,12 +59,9 @@ app.post('/newUser', (req, res) => {
     }
   }
 
-  //req.body instead of all required fields
   const newUser = User.create(req.body)
     .then(user => {
       console.log(JSON.stringify(user))
-
-      // console.log(JSON.stringify(apiRepr))
       res.status(201).json(user.apiRepr());
     })
     .catch(err => {
@@ -92,8 +92,6 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
   });
 }
 
-// this function closes the server, and returns a promise. we'll
-// use it in our integration tests later.
 function closeServer() {
 	
   return mongoose.disconnect().then(() => {
