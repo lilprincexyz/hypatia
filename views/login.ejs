@@ -3,12 +3,11 @@
         <div id='stars'></div>
         <div id='stars2'></div>
         <div id='stars3'></div>
-
-        <header role="banner">
+        <main role="main">
+                <header role="banner">
             <h1>HYPATIA</h1>
         </header>
-        <main>
-            <form action="/login" class="login-section" method="post">
+            <form class="login-section" action="/login" method="post">
                 <fieldset>
                     <h1>Log In</h1>
                         <label for="username">Username</label>
@@ -17,11 +16,11 @@
                         <label for="password">Password</label>
                         <input type="password" placeholder="1-religion" name="password" required/>            
                     
-                        <button type="submit">Log in</button>       
+                        <button class="buttons" type="submit">Log in</button>       
                 </fieldset>
             </form>
         </main>
-        <footer>
+        <footer role="contentinfo">
           <p>Don't want an account? 
             <a href="/religion"> Browse as a guest</a>
           </p>

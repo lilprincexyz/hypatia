@@ -1,44 +1,40 @@
 <%- include("./_header.ejs") %>
-  <body>
-  	<div id="title2" class="item" data-aos="fade-up">
-      <h1><%= religion.name %></h1>
+  <body class="detail">
+    <main role="main">
+    	<div id="title2" class="item" data-aos="fade-up">
+        <h1><%= religion.name %></h1>
+        <div class="controls">
+          <a class="buttons" href="../religion"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back</a>
+          <% if(user) { %>
+            <a class="buttons" id="editButton" data-religion-id="<%= religion.id %>"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit</a>
 
-      <button class="buttons"><a href="../religion">Back to Home</a></button>
-      
-      <% if(user) { %>
-        <button class="buttons" id="editButton" data-religion-id="<%= religion.id %>">Edit Religion</button>
-
-        <button class="buttons" id="deleteButton" data-religion-id="<%= religion.id %>">Delete Religion</button>
-      <% } %>
-      
-      <h2>HISTORICAL ROOTS</h2>
+            <a class="buttons" id="deleteButton" data-religion-id="<%= religion.id %>"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+          <% } %>
+        </div>
+        <h2>HISTORICAL ROOTS</h2>
+          <p class="item" data-aos="fade-up">
+          <%= religion.historicalRoots %>
+        </p>
+        <h2>BASIC BELIEFS</h2>
         <p class="item" data-aos="fade-up">
-        <%= religion.historicalRoots %>
-      </p>
-
-      <h2>BASIC BELIEFS</h2>
-      <p class="item" data-aos="fade-up">
-        <%= religion.basicBeliefs %>
-      </p>
-
-      <h2>PRACTICES</h2>
-      <p class="item" data-aos="fade-up">
-        <%= religion.practices %>
-      </p>
-  
-      <h2>ORGANIZATION</h2>
-      <p class="item" data-aos="fade-up">
-        <%= religion.organization %>
-      </p>
-
-      <h2>BOOKS</h2>
-      <p class="item" data-aos="fade-up">
-        <%= religion.books[0] %>
-      </p>
-
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-    <script src="/religionDetail.js"></script>
+          <%= religion.basicBeliefs %>
+        </p>
+        <h2>PRACTICES</h2>
+        <p class="item" data-aos="fade-up">
+          <%= religion.practices %>
+        </p>
+        <h2>ORGANIZATION</h2>
+        <p class="item" data-aos="fade-up">
+          <%= religion.organization %>
+        </p>
+        <h2>BOOKS</h2>
+        <p class="item" data-aos="fade-up">
+          <%= religion.books[0] %>
+        </p>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+      <script src="/religionDetail.js"></script>
+    </main>
   </body>
 </html>

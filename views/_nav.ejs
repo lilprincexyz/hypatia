@@ -1,0 +1,17 @@
+<%- include("./_header.ejs") %>
+	<nav class="container" role="navigation">
+		<img src="https://i.pinimg.com/236x/f1/28/1f/f1281f5e76a482b8e35a48bf51bf6415.jpg" class="navhypatia" alt="hypatia bust">
+		<% if(user) { %>
+	  	
+	        	<a class="buttons" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+
+    	        <div class="controls">
+          			<a class="buttons" href="../religion/new"><i class="fa fa-plus-square" aria-hidden="true"></i> New</a>
+        		</div>
+	  	<% } else { %>
+        	<a class="buttons" href="/newUser"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
+
+	  		<a class="buttons" href="/login"><i class="fa fa-user fa-fw"></i> Login</a>
+	  <% } %>	
+	</nav>
+</html>

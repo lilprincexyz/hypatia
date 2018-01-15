@@ -40,6 +40,11 @@ app.get("/newUser", (req, res) => {
   res.render("newUser");
 })
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/religion');
+});
+
 app.post('/newUser', (req, res) => {
   const requiredFields = ['username', 'password'];
   for (let i=0; i<requiredFields.length; i++) {

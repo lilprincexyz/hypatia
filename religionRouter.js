@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 // auth required
 router.get('/:id/edit', (req, res) => {
   if(!req.isAuthenticated()) {
-    res.redirect("../login");
+    res.redirect("/login");
   }
   Religion
     .findById(req.params.id)

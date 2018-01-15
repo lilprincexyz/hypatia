@@ -1,31 +1,27 @@
 <%- include("./_header.ejs") %>
-  <body>
-    <div id='stars'></div>
-    <div id='stars2'></div>
-    <div id='stars3'></div>
-    <div id="title">
+  <body class="religion">
+    <%- include("./_nav.ejs") %>
+    <main role="main">
+      <div id='stars'></div>
+      <div id='stars2'></div>
+      <div id='stars3'></div>
+      <div id="title">
 
-    <% if(user) { %>
-      <a href="../religion/new">Add New Religion</a>
-    <% } %>
-
-  	<h1>BROWSE RELIGIONS</h1>
-    <br>
-  	<% religions.forEach(function (religion){ %>
-      <br>
-      <div id="religion" class="item" data-aos="fade-up">
-      <h2>
-        <a href="/religion/<%= religion.id %>">
-        <%= religion.name %></a>
-      </h2>
+    	<h1>BROWSE RELIGIONS</h1>
+      <p>Click a religion for more information.</p>
+    	<% religions.forEach(function (religion){ %>
+        <br>
+        <div id="religion" class="item" data-aos="fade-up">
+        <h2>
+          <a href="/religion/<%= religion.id %>">
+          <%= religion.name %></a>
+        </h2>
+        </div>
+    	<% })%>     
       </div>
-
-  	<% })%>  
-    
-    </div>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
-  <script src="/religion.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+      <script src="/religion.js"></script>
+    </main>
   </body>
 </html>
