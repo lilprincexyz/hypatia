@@ -4,7 +4,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-const {Religion} = require('./models');
+const {Religion, User} = require('./models');
 const passport = require('passport');
 
 // auth required
