@@ -15,7 +15,7 @@ Why is this app useful? A typical internet user chats with others in forums and 
 
 Initial wireframes for the home page can be seen below. Wireframes of all key processes were designed along with data flow for key data processing tasks.
 
-![Initial Wireframes](public/styles/pics/wireframe.jpg)
+![Initial Wireframes](public/styles/pics/wireframe.JPG)
 
 The app was designed to work on mobile as well as tablet and desktop from the outset. 
 
