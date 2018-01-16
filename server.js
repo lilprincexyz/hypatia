@@ -26,6 +26,9 @@ app.use(flash());
 const passport = passportConfig(app);
 app.use('/religion', religionRouter);
 
+app.get("/", (req, res) => {
+  res.redirect("/religion");
+})
 // login auth with passport
 app.get("/login", (req, res) => {
   res.render("login");
