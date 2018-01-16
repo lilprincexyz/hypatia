@@ -6,24 +6,30 @@
 	  	<form id="editReligionForm" data-religion-id="<%= religion.id %>">
 		  	<div>
 		  		<label for="name">Name</label>
+		  		<span class="error"></span>
 		  		<input class="edit" id="name" value="<%= religion.name %>"></input>
 			</div>
 			<br>
 		  	<div>
 		  		<label for="historicalRoots">Historical Roots</label>
+		  		<span class="error"></span>
 		  		<textarea class="edit" id="historicalRoots"><%= religion.historicalRoots %></textarea>
 			</div>
 		  	<div>
 		  		<label for="basicBeliefs">Basic Beliefs</label>
+		  		<span class="error"></span>
 		  		<textarea class="edit" id="basicBeliefs"><%= religion.basicBeliefs %></textarea>
 			</div>
 		  	<div>
 		  		<label for="practices">Practices</label>
-		  		<textarea class="edit" id="practices"> 		<%= religion.practices %>
+		  		<span class="error"></span>
+		  		<textarea class="edit" id="practices"> 		
+		  		<%= religion.practices %>
 		  		</textarea>
 			</div>
 		  	<div>
 		  		<label for="organization">Organization</label>
+		  		<span class="error"></span>
 		  		<textarea class="edit" id="organization"> 	<%= religion.organization %>
 		  		</textarea>
 			</div>

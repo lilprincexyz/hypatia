@@ -16,6 +16,29 @@ $newReligionForm.on("submit", function(event) {
 		organization: $organization.val(),
 		books: [$books.val()]
 	};
+
+    const error = "Field is required."
+
+    if (! religion.name) {
+	    	$name.siblings(".error").text(error);
+    }
+
+    if (! religion.historicalRoots) {
+    	$historicalRoots.siblings(".error").text(error);
+    }
+
+        if (! religion.basicBeliefs) {
+    	$basicBeliefs.siblings(".error").text(error);
+    }
+
+        if (! religion.practices) {
+    	$practices.siblings(".error").text(error);
+    }
+
+        if (! religion.organization) {
+    	$organization.siblings(".error").text(error);
+    }    
+
 	$.ajax({
 		method: "POST",
 		contentType: "application/json",

@@ -67,7 +67,7 @@ router.post('/', jsonParser, (req, res) => {
                           'practices', 'organization', 'books'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
-    if (!(field in req.body)) {
+    if (!(req.body[field])) {
       const message = `Missing \`${field}\` in request body`
       console.error(message);
       return res.status(400).send(message);
